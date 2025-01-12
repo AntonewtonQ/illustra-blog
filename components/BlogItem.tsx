@@ -20,6 +20,11 @@ const BlogItem = ({
   id,
   image,
 }: BlogProps) => {
+  const truncateText = (text: string, maxLength: number) => {
+    return text.length > maxLength
+      ? `${text.substring(0, maxLength)}...`
+      : text;
+  };
   return (
     <div className="mt-4">
       <Link href={`/blogs/${id}`}>
@@ -29,7 +34,7 @@ const BlogItem = ({
             <CardTitle>{title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <CardDescription>{description}</CardDescription>
+            <CardDescription>{truncateText(description, 100)}</CardDescription>
           </CardContent>
           <CardFooter className="flex justify-between">
             <p className="flex justify-center items-center gap-2">

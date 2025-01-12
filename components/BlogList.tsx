@@ -4,9 +4,10 @@ import { blog_data } from "@/constants";
 
 const BlogList = () => {
   return (
-    <div className="max-w-[870px] mx-auto p-4 lg:py-8 flex-col items-start justify-center border-2 border-red-400">
+    <div className="max-w-[870px] mx-auto p-4 lg:py-8 flex-col items-start justify-center border-t-2 border-b-2 border-black rounded-3xl">
       {blog_data.map((blog) => (
         <BlogItem
+          key={blog.id}
           title={blog.title}
           category={blog.category}
           description={blog.description}
