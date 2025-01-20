@@ -1,5 +1,5 @@
 import { auth, db } from "@/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
@@ -65,8 +65,7 @@ export async function handleSignup(formData: FormData){
     }
 }
 
-export async function handleLogin(formData:FormData) {
-    const router = useRouter();
+export async function handleLogin(formData:FormData,router: any) {
 
     const email = formData.get("email")?.toString().trim();
     const password = formData.get("password")?.toString().trim();
@@ -91,7 +90,7 @@ export async function handleLogin(formData:FormData) {
         });
         */
        console.log("login feito com sucesso");
-        router.push("/dashboard");
+       router.push("/dashboard");
       } catch (error) {
         /*
         toast({
@@ -101,6 +100,14 @@ export async function handleLogin(formData:FormData) {
         */
        console.log("error: ", error);
       }
-  
-    
 }
+
+export async function handleLogout(router: any) {
+    try {
+      await signOut(auth); // Desloga o usuário do Firebase
+      console.log("Logout realizado com sucesso");
+      router.push("/login"); // Redireciona para a página de login
+    } catch (error) {
+      console.log("Erro ao fazer logout: ", error);
+    }
+  }

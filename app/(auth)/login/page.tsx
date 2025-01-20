@@ -1,3 +1,5 @@
+"use client";
+import { handleLogin } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,9 +20,11 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { ArrowBigLeft, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
+  const router = useRouter();
   return (
     <div className="flex flex-col justify-center items-center h-screen space-y-14">
       <div className="flex justify-start items-start w-[350px]">
@@ -36,15 +40,27 @@ const LoginPage = () => {
           <CardDescription>Faça login na sua conta</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target as HTMLFormElement);
+              await handleLogin(formData, router);
+            }}
+          >
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Name</Label>
-                <Input type="email" id="name" placeholder="your email here" />
+                <Input
+                  type="email"
+                  name="email"
+                  id="name"
+                  placeholder="your email here"
+                />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
                 <Input
+                  name="password"
                   type="password"
                   id="password"
                   placeholder="your password here"
