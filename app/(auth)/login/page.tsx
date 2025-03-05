@@ -10,13 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
 import { ArrowBigLeft, ArrowLeft } from "lucide-react";
 import Link from "next/link";

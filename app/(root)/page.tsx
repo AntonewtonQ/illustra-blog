@@ -1,5 +1,5 @@
-import BlogItem from "@/components/BlogItem";
-import BlogList from "@/components/BlogList";
+import BlogItem from "@/components/PostItem";
+import BlogList from "@/components/PostList";
 import Hero from "@/components/Hero";
 import Image from "next/image";
 

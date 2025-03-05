@@ -1,16 +1,7 @@
 
-export interface BlogProps{
-    id:number,
-    title:string;
-    description:string;
-    image:string;
-    date:number;
-    category:string;
-    author:string;
-    author_img:string;
-}
 
-export function formatDate(timestamp: number): string {
+
+export function formatDate(timestamp: string): string {
     const date = new Date(timestamp);
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -23,7 +14,7 @@ export function formatDate(timestamp: number): string {
 export const assets = {
     }
 
-    export const blog_data = [{
+    export const posts_data = [{
         id:1,
         title:"A detailed step by step guide to manage your lifestyle",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, autem aut voluptas accusantium quos natus earum neque architecto aliquid blanditiis recusandae esse illo pariatur ex error ipsum iste ea expedita.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, autem aut voluptas accusantium quos natus earum neque architecto aliquid blanditiis recusandae esse illo pariatur ex error ipsum iste ea expedita.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, autem aut voluptas accusantium quos natus earum neque architecto aliquid blanditiis recusandae esse illo pariatur ex error ipsum iste ea expedita.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, autem aut voluptas accusantium quos natus earum neque architecto aliquid blanditiis recusandae esse illo pariatur ex error ipsum iste ea expedita.",

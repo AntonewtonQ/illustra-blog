@@ -1,4 +1,4 @@
-import { BlogProps, formatDate } from "@/constants";
+import { formatDate } from "@/constants";
 import {
   Card,
   CardContent,
@@ -9,8 +9,9 @@ import {
 } from "./ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import { BlogProps } from "@/models/BlogProps";
 
-const BlogItem = ({
+const PostItem = ({
   title,
   description,
   category,
@@ -31,7 +32,7 @@ const BlogItem = ({
         <Card className="bg-zinc-100 flex flex-col gap-0">
           <CardHeader className="inline-flex justify-between">
             <p className="text-[15px] font-light">{`#${category}`}</p>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle>{truncateText(title, 50)}</CardTitle>
           </CardHeader>
           <CardContent>
             <CardDescription>{truncateText(description, 100)}</CardDescription>
@@ -54,4 +55,4 @@ const BlogItem = ({
   );
 };
 
-export default BlogItem;
+export default PostItem;

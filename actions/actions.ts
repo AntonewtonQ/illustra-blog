@@ -1,7 +1,6 @@
 import { auth, db } from "@/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { useRouter } from "next/navigation";
 
 export async function handleSignup(formData: FormData){
     const email = formData.get("email")?.toString().trim();
@@ -51,7 +50,6 @@ export async function handleSignup(formData: FormData){
         title: "Conta criada com sucesso!",
         description: "Sua conta foi criada. Você pode fazer login agora.",
       });
-      setStep(5);
      */
       console.log("conta criada com sucesso");
     } catch (error) {
