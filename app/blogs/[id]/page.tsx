@@ -170,7 +170,7 @@ const BlogPage = ({ params }: { params: Promise<Params> }) => {
       </h1>
 
       <div>
-        <div className="prose max-w-none font-semibold">
+        <div className="prose max-w-none ">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {data?.content || ""}
           </ReactMarkdown>
