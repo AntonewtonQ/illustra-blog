@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -22,10 +21,9 @@ export function CreatePostForm() {
     const result = await createPost(formData);
 
     if (result.success) {
-      //toast({ title: "Post criado!", description: "Seu post foi publicado com sucesso." });
       router.push("/dashboard"); // Redireciona após criação
     } else {
-      //toast({ title: "Erro", description: result.error, variant: "destructive" });
+      alert(result.error);
     }
 
     setLoading(false);
@@ -33,7 +31,10 @@ export function CreatePostForm() {
 
   return (
     <Card className="w-full max-w-lg mx-auto py-4">
-      <CardContent className="">
+      <CardHeader>
+        <CardTitle>Escreva um Novo Post</CardTitle>
+      </CardHeader>
+      <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="title">Título</Label>
@@ -46,7 +47,7 @@ export function CreatePostForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">Conteúdo</Label>
+            <Label htmlFor="content">Conteúdo (Markdown)</Label>
             <Textarea
               id="content"
               name="content"
@@ -56,11 +57,11 @@ export function CreatePostForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="tags">Tags</Label>
+            <Label htmlFor="tags">Tags (separadas por vírgula)</Label>
             <Input
               id="tags"
               name="tags"
-              placeholder="Tags (separadas por vírgula)"
+              placeholder="Ex: tecnologia, programação"
             />
           </div>
 

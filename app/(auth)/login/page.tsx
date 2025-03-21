@@ -1,17 +1,10 @@
 "use client";
 import { handleLogin } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { ArrowBigLeft, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -29,8 +22,7 @@ const LoginPage = () => {
       </div>
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Fazer Login</CardTitle>
-          <CardDescription>Faça login na sua conta</CardDescription>
+          <CardTitle>login as admin</CardTitle>
         </CardHeader>
         <CardContent>
           <form
@@ -42,12 +34,12 @@ const LoginPage = () => {
           >
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name">email</Label>
                 <Input
                   type="email"
                   name="email"
                   id="name"
-                  placeholder="your email here"
+                  placeholder="admin email here"
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
@@ -56,7 +48,7 @@ const LoginPage = () => {
                   name="password"
                   type="password"
                   id="password"
-                  placeholder="your password here"
+                  placeholder="admin password here"
                 />
               </div>
             </div>
@@ -64,14 +56,6 @@ const LoginPage = () => {
               <Button type="submit" className="">
                 Login
               </Button>
-              <Link href="/signup" className="">
-                <Button
-                  type="button"
-                  className="bg-white text-black justify-start border hover:bg-zinc-100"
-                >
-                  Criar conta
-                </Button>
-              </Link>
             </div>
           </form>
         </CardContent>

@@ -1,8 +1,51 @@
-import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDocs, query, where, deleteDoc, updateDoc, increment } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const db = getFirestore();
 const auth = getAuth();
+
+export async function toggleLike(postID: string) {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (!user) {
+    return { success: false, error: "Usuário não autenticado." };
+  }
+
+  const likesRef = collection(db, "likes");
+  const likeQuery = query(likesRef, where("postID", "==", postID), where("userID", "==", user.uid));
+  
+  const likeSnapshot = await getDocs(likeQuery);
+  const postRef = doc(db, "posts", postID);
+
+  if (!likeSnapshot.empty) {
+    // Se o usuário já curtiu, remover like
+    const likeDoc = likeSnapshot.docs[0];
+    await deleteDoc(doc(db, "likes", likeDoc.id));
+
+    // Decrementa o contador de likes no Firestore
+    await updateDoc(postRef, {
+      likes: increment(-1),
+    });
+
+    return { success: true, liked: false };
+  } else {
+    // Se ainda não curtiu, adicionar like
+    await addDoc(likesRef, {
+      postID,
+      userID: user.uid,
+      createdAt: new Date(),
+    });
+
+    // Incrementa o contador de likes no Firestore
+    await updateDoc(postRef, {
+      likes: increment(1),
+    });
+
+    return { success: true, liked: true };
+  }
+}
+
 
 export async function createPost(formData: FormData) {
     try {
