@@ -26,14 +26,14 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Troca de slide a cada 5 segundos
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="max-w-[870px] mx-auto p-4 lg:py-24 flex flex-col items-center justify-center">
-      <Carousel className="w-full max-w-[800px] mt-6">
+    <section className="w-full max-w-3xl mx-auto p-4 lg:py-24 flex flex-col items-center justify-center text-center">
+      <Carousel className="w-full max-w-2xl mt-6">
         <CarouselContent
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
@@ -45,9 +45,9 @@ const Hero = () => {
               <img
                 src={src}
                 alt={`Slide ${index + 1}`}
-                className="rounded-2xl w-full h-[300px] object-cover"
+                className="rounded-2xl w-full h-[250px] md:h-[300px] object-cover"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white text-xl font-semibold rounded-2xl">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white text-sm md:text-xl font-semibold rounded-2xl p-2">
                 {text}
               </div>
             </CarouselItem>
@@ -65,8 +65,8 @@ const Hero = () => {
         />
       </Carousel>
 
-      <div className="flex gap-4 mt-6">
-        <Button className="transition ease-in-out rounded-3xl delay-150 hover:-translate-y-1 duration-300">
+      <div className="flex flex-col md:flex-row gap-4 mt-6">
+        <Button className="rounded-3xl transition-transform duration-300 hover:-translate-y-1">
           <Link
             className="w-full flex gap-2 items-center"
             href="https://antonewton.vercel.app/"
@@ -75,7 +75,7 @@ const Hero = () => {
             Get in touch <ArrowRight />
           </Link>
         </Button>
-        <Button className="bg-white text-black rounded-3xl border-[1px] hover:bg-zinc-100 border-zinc-400 transition ease-in-out delay-150 hover:-translate-y-1 duration-300">
+        <Button className="bg-white text-black rounded-3xl border border-zinc-400 hover:bg-zinc-100 transition-transform duration-300 hover:-translate-y-1">
           <Link href="/">View all posts</Link>
         </Button>
       </div>
